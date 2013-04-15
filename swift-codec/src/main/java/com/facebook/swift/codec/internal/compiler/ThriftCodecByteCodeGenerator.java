@@ -190,7 +190,7 @@ public class ThriftCodecByteCodeGenerator<T>
      */
     private Map<Short, FieldDefinition> declareCodecFields()
     {
-        Map<Short, FieldDefinition> codecFields = new TreeMap<>();
+        Map<Short, FieldDefinition> codecFields = new TreeMap<Short, FieldDefinition>();
         for (ThriftFieldMetadata fieldMetadata : metadata.getFields()) {
             if (needsCodec(fieldMetadata)) {
 
@@ -286,7 +286,7 @@ public class ThriftCodecByteCodeGenerator<T>
         LocalVariableDefinition protocol = read.getLocalVariable("reader");
 
         // declare and init local variables here
-        Map<Short, LocalVariableDefinition> structData = new TreeMap<>();
+        Map<Short, LocalVariableDefinition> structData = new TreeMap<Short, LocalVariableDefinition>();
         for (ThriftFieldMetadata field : metadata.getFields()) {
             LocalVariableDefinition variable = read.addInitializedLocalVariable(
                     toParameterizedType(field.getType()),
@@ -309,7 +309,7 @@ public class ThriftCodecByteCodeGenerator<T>
 
         // switch (protocol.getFieldId())
         read.loadVariable(protocol).invokeVirtual(TProtocolReader.class, "getFieldId", short.class);
-        List<CaseStatement> cases = new ArrayList<>();
+        List<CaseStatement> cases = new ArrayList<CaseStatement>();
         for (ThriftFieldMetadata field : metadata.getFields()) {
             cases.add(caseStatement(field.getId(), field.getName() + "-field"));
         }
@@ -730,8 +730,8 @@ public class ThriftCodecByteCodeGenerator<T>
 
     private static class ConstructorParameters
     {
-        private final List<FieldDefinition> fields = new ArrayList<>();
-        private final List<Object> values = new ArrayList<>();
+        private final List<FieldDefinition> fields = new ArrayList<FieldDefinition>();
+        private final List<Object> values = new ArrayList<Object>();
 
         private void add(FieldDefinition field, Object value)
         {

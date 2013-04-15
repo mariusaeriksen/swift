@@ -496,7 +496,7 @@ public class ThriftStructMetadataBuilder<T>
      */
     private Set<String> inferThriftFieldIds()
     {
-        Set<String> fieldsWithConflictingIds = new HashSet<>();
+        Set<String> fieldsWithConflictingIds = new HashSet<String>();
 
         // group fields by explicit name or by name extracted from field, method or property
         Multimap<String, FieldMetadata> fieldsByExplicitOrExtractedName = Multimaps.index(fields, getOrExtractThriftFieldName());
@@ -583,7 +583,7 @@ public class ThriftStructMetadataBuilder<T>
 
         // fields must have the same type
         if (isSupportedType) {
-            Set<ThriftType> types = new HashSet<>();
+            Set<ThriftType> types = new HashSet<ThriftType>();
             for (FieldMetadata field : fields) {
                 types.add(catalog.getThriftType(field.getJavaType()));
             }
@@ -614,7 +614,7 @@ public class ThriftStructMetadataBuilder<T>
         // methods injections
         List<ThriftMethodInjection> methodInjections = buildMethodInjections();
 
-        return new ThriftStructMetadata<>(
+        return new ThriftStructMetadata<T>(
                 structName,
                 structClass,
                 builderClass,

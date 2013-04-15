@@ -35,9 +35,9 @@ public class ClassDefinition
     private final int access;
     private final String name;
     private final ParameterizedType superClass;
-    private final List<ParameterizedType> interfaces = new ArrayList<>();
-    private final List<FieldDefinition> fields = new ArrayList<>();
-    private final List<MethodDefinition> methods = new ArrayList<>();
+    private final List<ParameterizedType> interfaces = new ArrayList<ParameterizedType>();
+    private final List<FieldDefinition> fields = new ArrayList<FieldDefinition>();
+    private final List<MethodDefinition> methods = new ArrayList<MethodDefinition>();
 
     public ClassDefinition(
             EnumSet<Access> access,

@@ -139,7 +139,7 @@ public abstract class AbstractThriftCodecManagerTest
         OneOfEverythingThriftCodec codec = new OneOfEverythingThriftCodec(
                 oneOfEverythingType,
                 bonkFieldCodec,
-                new SetThriftCodec<>(ThriftType.BOOL, new BooleanThriftCodec()));
+                new SetThriftCodec<Boolean>(ThriftType.BOOL, new BooleanThriftCodec()));
 
         // manual codec only support some fields
         OneOfEverything one = new OneOfEverything();

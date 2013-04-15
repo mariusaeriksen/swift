@@ -99,24 +99,24 @@ public class ThriftCodecManager
                     case MAP: {
                         ThriftCodec<?> keyCodec = typeCodecs.get(type.getKeyType());
                         ThriftCodec<?> valueCodec = typeCodecs.get(type.getValueType());
-                        return new MapThriftCodec<>(type, keyCodec, valueCodec);
+                        return new MapThriftCodec(type, keyCodec, valueCodec);
                     }
                     case SET: {
                         ThriftCodec<?> elementCodec = typeCodecs.get(type.getValueType());
-                        return new SetThriftCodec<>(type, elementCodec);
+                        return new SetThriftCodec(type, elementCodec);
                     }
                     case LIST: {
                         ThriftCodec<?> elementCodec = typeCodecs.get(type.getValueType());
-                        return new ListThriftCodec<>(type, elementCodec);
+                        return new ListThriftCodec(type, elementCodec);
                     }
                     case ENUM: {
-                        return new EnumThriftCodec<>(type);
+                        return new EnumThriftCodec(type);
                     }
                     default:
                         if (type.isCoerced()) {
                             ThriftCodec<?> codec = getCodec(type.getUncoercedType());
                             TypeCoercion coercion = catalog.getDefaultCoercion(type.getJavaType());
-                            return new CoercionThriftCodec<>(codec, coercion);
+                            return new CoercionThriftCodec(codec, coercion);
                         }
                         throw new IllegalArgumentException("Unsupported Thrift type " + type);
                 }

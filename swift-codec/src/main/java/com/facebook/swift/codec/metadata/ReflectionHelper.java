@@ -141,7 +141,7 @@ public final class ReflectionHelper
      */
     public static Collection<Method> findAnnotatedMethods(Class<?> type, Class<? extends Annotation> annotation)
     {
-        List<Method> result = new ArrayList<>();
+        List<Method> result = new ArrayList<Method>();
 
         // gather all publicly available methods
         // this returns everything, even if it's declared in a parent
@@ -201,7 +201,7 @@ public final class ReflectionHelper
 
     public static Collection<Field> findAnnotatedFields(Class<?> type, Class<? extends Annotation> annotation)
     {
-        List<Field> result = new ArrayList<>();
+        List<Field> result = new ArrayList<Field>();
 
         // gather all publicly available methods
         // this returns everything, even if it's declared in a parent

@@ -71,7 +71,7 @@ public class ReflectionThriftCodec<T> implements ThriftCodec<T>
         TProtocolReader reader = new TProtocolReader(protocol);
         reader.readStructBegin();
 
-        Map<Short, Object> data = new HashMap<>(metadata.getFields().size());
+        Map<Short, Object> data = new HashMap<Short, Object>(metadata.getFields().size());
         while (reader.nextField()) {
             short fieldId = reader.getFieldId();
 

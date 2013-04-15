@@ -98,8 +98,8 @@ public class TestThriftCodecManager
     public void testEnum()
             throws Exception
     {
-        ThriftEnumMetadata<Fruit> fruitEnumMetadata = new ThriftEnumMetadata<>(Fruit.class);
-        ThriftEnumMetadata<Letter> letterEnumMetadata = new ThriftEnumMetadata<>(Letter.class);
+        ThriftEnumMetadata<Fruit> fruitEnumMetadata = new ThriftEnumMetadata<Fruit>(Fruit.class);
+        ThriftEnumMetadata<Letter> letterEnumMetadata = new ThriftEnumMetadata<Letter>(Letter.class);
         testRoundTripSerialize(Fruit.CHERRY);
         testRoundTripSerialize(Letter.C);
         testRoundTripSerialize(enumType(fruitEnumMetadata), Fruit.CHERRY);

@@ -33,12 +33,13 @@
   <modules>
     <module>swift-annotations</module>
     <module>swift-codec</module>
-    <module>swift-idl-parser</module>
-    <module>swift-service</module>
+<!--    <module>swift-idl-parser</module>
+    <module>swift-service</module> 
     <module>swift-generator</module>
     <module>swift-generator-cli</module>
     <module>swift-maven-plugin</module>
     <module>swift-load-generator</module>
+-->
   </modules>
 
   <inceptionYear>2012</inceptionYear>
@@ -286,6 +287,18 @@
     <pluginManagement>
       <plugins>
         <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration combine.self="override">
+            <source>1.6</source>
+            <target>1.6</target>
+            <compilerArguments></compilerArguments>          
+          </configuration>
+
+        </plugin>
+
         <plugin>
           <groupId>org.eclipse.m2e</groupId>
           <artifactId>lifecycle-mapping</artifactId>

@@ -62,11 +62,11 @@ public class MethodDefinition
     private final String name;
     private final ParameterizedType returnType;
     private final List<ParameterizedType> parameters;
-    private final List<ParameterizedType> exceptions = new ArrayList<>();
+    private final List<ParameterizedType> exceptions = new ArrayList<ParameterizedType>();
     private final InsnList instructionList = new InsnList();
 
-    private final Map<String, LocalVariableDefinition> localVariables = new TreeMap<>();
-    private final Map<String, Label> labels = new TreeMap<>();
+    private final Map<String, LocalVariableDefinition> localVariables = new TreeMap<String, LocalVariableDefinition>();
+    private final Map<String, Label> labels = new TreeMap<String, Label>();
 
     private int nextSlot;
 

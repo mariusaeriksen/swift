@@ -73,17 +73,17 @@ import static java.lang.reflect.Modifier.isStatic;
 public class ThriftCatalog
 {
     private final MetadataErrors.Monitor monitor;
-    private final ConcurrentMap<Class<?>, ThriftStructMetadata<?>> structs = new ConcurrentHashMap<>();
-    private final ConcurrentMap<Class<?>, ThriftEnumMetadata<?>> enums = new ConcurrentHashMap<>();
-    private final ConcurrentMap<Type, TypeCoercion> coercions = new ConcurrentHashMap<>();
-    private final ConcurrentMap<Class<?>, ThriftType> manualTypes = new ConcurrentHashMap<>();
+    private final ConcurrentMap<Class<?>, ThriftStructMetadata<?>> structs = new ConcurrentHashMap<Class<?>, ThriftStructMetadata<?>>();
+    private final ConcurrentMap<Class<?>, ThriftEnumMetadata<?>> enums = new ConcurrentHashMap<Class<?>, ThriftEnumMetadata<?>>();
+    private final ConcurrentMap<Type, TypeCoercion> coercions = new ConcurrentHashMap<Type, TypeCoercion>();
+    private final ConcurrentMap<Class<?>, ThriftType> manualTypes = new ConcurrentHashMap<Class<?>, ThriftType>();
 
     private final ThreadLocal<Deque<Class<?>>> stack = new ThreadLocal<Deque<Class<?>>>()
     {
         @Override
         protected Deque<Class<?>> initialValue()
         {
-            return new ArrayDeque<>();
+            return new ArrayDeque<Class<?>>();
         }
     };
 
@@ -118,8 +118,8 @@ public class ThriftCatalog
     public void addDefaultCoercions(Class<?> coercionsClass)
     {
         Preconditions.checkNotNull(coercionsClass, "coercionsClass is null");
-        Map<ThriftType, Method> toThriftCoercions = new HashMap<>();
-        Map<ThriftType, Method> fromThriftCoercions = new HashMap<>();
+        Map<ThriftType, Method> toThriftCoercions = new HashMap<ThriftType, Method>();
+        Map<ThriftType, Method> fromThriftCoercions = new HashMap<ThriftType, Method>();
         for (Method method : coercionsClass.getDeclaredMethods()) {
             if (method.isAnnotationPresent(ToThrift.class)) {
                 verifyCoercionMethod(method);
@@ -160,7 +160,7 @@ public class ThriftCatalog
                 difference);
 
         // add the coercions
-        Map<Type, TypeCoercion> coercions = new HashMap<>();
+        Map<Type, TypeCoercion> coercions = new HashMap<Type, TypeCoercion>();
         for (Map.Entry<ThriftType, Method> entry : toThriftCoercions.entrySet()) {
             ThriftType type = entry.getKey();
             Method toThriftMethod = entry.getValue();
@@ -331,7 +331,7 @@ public class ThriftCatalog
     {
         ThriftEnumMetadata<?> enumMetadata = enums.get(enumClass);
         if (enumMetadata == null) {
-            enumMetadata = new ThriftEnumMetadata<>((Class<T>) enumClass);
+            enumMetadata = new ThriftEnumMetadata((Class<T>) enumClass);
 
             ThriftEnumMetadata<?> current = enums.putIfAbsent(enumClass, enumMetadata);
             if (current != null) {
@@ -378,7 +378,7 @@ public class ThriftCatalog
 
         stack.push(structClass);
         try {
-            ThriftStructMetadataBuilder<T> builder = new ThriftStructMetadataBuilder<>(this, structClass);
+            ThriftStructMetadataBuilder<T> builder = new ThriftStructMetadataBuilder<T>(this, structClass);
             ThriftStructMetadata<T> structMetadata = builder.build();
             return structMetadata;
         }

@@ -119,7 +119,7 @@ public class TestThriftStructMetadata
     private <T> ThriftStructMetadata<T> testMetadataBuild(Class<T> structClass, int expectedConstructorParameters, int expectedMethodInjections)
     {
         ThriftCatalog catalog = new ThriftCatalog();
-        ThriftStructMetadataBuilder<T> builder = new ThriftStructMetadataBuilder<>(catalog, structClass);
+        ThriftStructMetadataBuilder<T> builder = new ThriftStructMetadataBuilder<T>(catalog, structClass);
         assertNotNull(builder);
 
         assertNotNull(builder.getMetadataErrors());
