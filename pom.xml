@@ -9,7 +9,7 @@
     <version>4</version>
   </parent>
 
-  <groupId>com.facebook.swift</groupId>
+  <groupId>com.twitter.com.facebook.swift</groupId>
   <artifactId>swift-root</artifactId>
   <version>0.6.0-SNAPSHOT</version>
   <packaging>pom</packaging>
@@ -33,7 +33,8 @@
   <modules>
     <module>swift-annotations</module>
     <module>swift-codec</module>
-<!--    <module>swift-idl-parser</module>
+<!--  For Twitter temporary publish only
+    <module>swift-idl-parser</module>
     <module>swift-service</module> 
     <module>swift-generator</module>
     <module>swift-generator-cli</module>
@@ -65,13 +66,13 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>com.facebook.swift</groupId>
+        <groupId>com.twitter.com.facebook.swift</groupId>
         <artifactId>swift-annotations</artifactId>
         <version>${project.version}</version>
       </dependency>
 
       <dependency>
-        <groupId>com.facebook.swift</groupId>
+        <groupId>com.twitter.com.facebook.swift</groupId>
         <artifactId>swift-codec</artifactId>
         <version>${project.version}</version>
       </dependency>
